@@ -1,8 +1,10 @@
 import React from 'react';
 
 const item = (props) => {
+  console.log(props.tasks);
+
   const tasks = props.tasks.map(task => (
-    <li className="collection-item" key={Date.now()}>
+    <li className="collection-item" key={Math.random()}>
       <div>
         {task}
         <a href="#!" className="secondary-content">
@@ -13,12 +15,16 @@ const item = (props) => {
   ));
 
   return (
-    <ul className="collection with-header">
-      <li className="collection-header">
-        <h4>ToDos</h4>
-      </li>
-      {tasks}
-    </ul>
+    <div className="row">
+      <div className="col s6 offset-s3">
+        <ul className="collection with-header">
+          <li className="collection-header">
+            <h4>ToDos</h4>
+          </li>
+          {tasks}
+        </ul>
+      </div>
+    </div>
   );
 };
 
