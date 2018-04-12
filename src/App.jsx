@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from './components/header';
+import Header from './components/Header';
 import ToDo from './components/ToDoItem/';
 
 class App extends Component {
@@ -10,13 +10,15 @@ class App extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.removeTask = this.removeTask.bind(this);
   }
 
   addItem(e) {
-    console.log(e.target.value);
     if (this.state.input.replace(/\s/g, '') !== '') {
-      const newItem = this.state.input;
-      this.setState(prevState => ({ tasks: prevState.tasks.concat(newItem) }));
+      const newItem = { text: this.state.input, key: Math.random() };
+
+      this.setState(prevState => ({ tasks: [...prevState.tasks, newItem] }));
+      console.log(this.state);
     }
 
     this.setState({ input: '' });
@@ -29,12 +31,18 @@ class App extends Component {
     this.setState({ input: e.target.value });
   }
 
+  removeTask(key) {
+    this.setState({
+      tasks: this.state.tasks.filter(task => task.key !== key),
+    });
+  }
+
   render() {
     return (
       <div>
         <Header />
         <div className="container">
-          <ToDo tasks={this.state.tasks} />
+          <ToDo tasks={this.state.tasks} removeTask={this.removeTask} />
           <div className="row">
             <form className="col s6 offset-s3">
               <div className="row">

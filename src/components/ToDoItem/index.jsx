@@ -1,14 +1,22 @@
 import React from 'react';
 
 const item = (props) => {
-  console.log(props.tasks);
+  const removeTask = (key) => {
+    props.removeTask(key);
+  };
 
   const tasks = props.tasks.map(task => (
-    <li className="collection-item" key={Math.random()}>
+    <li
+      className="collection-item"
+      key={task.key}
+      onClick={() => {
+        removeTask(task.key);
+      }}
+    >
       <div>
-        {task}
+        {task.text}
         <a href="#!" className="secondary-content">
-          <i className="material-icons">send</i>
+          <i className="material-icons">close</i>
         </a>
       </div>
     </li>
