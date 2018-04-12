@@ -13,7 +13,7 @@ const item = (props) => {
         removeTask(task.key);
       }}
     >
-      <div>
+      <div className="animated shake">
         {task.text}
         <a href="#!" className="secondary-content">
           <i className="material-icons">close</i>

@@ -7,7 +7,10 @@ const Input = props => (
         <div className="input-field   col s12 m8 l9">
           <input value={props.value} onChange={props.onChangeValue} placeholder="Enter task" />
         </div>
-        <button onClick={props.addItem} className="btn right purple lighten-2 m3">
+        <button
+          onClick={props.addItem}
+          className="btn waves-effect waves-light right purple lighten-2 m3"
+        >
           <i className="material-icons center">add</i>
         </button>
       </div>
