@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import ToDo from './components/ToDoItem/';
+import Input from './components/Input';
 
 class App extends Component {
   constructor(props) {
@@ -8,27 +9,18 @@ class App extends Component {
 
     this.state = { tasks: [], input: '' };
 
-    this.handleChange = this.handleChange.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.handleChangeValue = this.handleChangeValue.bind(this);
     this.removeTask = this.removeTask.bind(this);
   }
 
-  addItem(e) {
+  addItem() {
     if (this.state.input.replace(/\s/g, '') !== '') {
       const newItem = { text: this.state.input, key: Math.random() };
-
       this.setState(prevState => ({ tasks: [...prevState.tasks, newItem] }));
-      console.log(this.state);
     }
 
     this.setState({ input: '' });
-    this.input.value = '';
-
-    e.preventDefault();
-  }
-
-  handleChange(e) {
-    this.setState({ input: e.target.value });
   }
 
   removeTask(key) {
@@ -37,30 +29,21 @@ class App extends Component {
     });
   }
 
+  handleChangeValue(e) {
+    this.setState({ input: e.target.value });
+  }
+
   render() {
     return (
       <div>
         <Header />
         <div className="container">
           <ToDo tasks={this.state.tasks} removeTask={this.removeTask} />
-          <div className="row">
-            <form className="col s6 offset-s3">
-              <div className="row">
-                <div className="input-field   col s10">
-                  <input
-                    ref={(input) => {
-                      this.input = input;
-                    }}
-                    onChange={this.handleChange}
-                    placeholder="Enter task"
-                  />
-                </div>
-                <button onClick={this.addItem} className="btn right purple lighten-2" type="submit">
-                  <i className="material-icons center">add</i>
-                </button>
-              </div>
-            </form>
-          </div>
+          <Input
+            value={this.state.input}
+            onChangeValue={this.handleChangeValue}
+            addItem={this.addItem}
+          />
         </div>
       </div>
     );
