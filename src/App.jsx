@@ -38,12 +38,13 @@ class App extends Component {
       <div>
         <Header />
         <div className="container">
-          <ToDo tasks={this.state.tasks} removeTask={this.removeTask} />
+          <br />
           <Input
             value={this.state.input}
             onChangeValue={this.handleChangeValue}
             addItem={this.addItem}
           />
+          <ToDo tasks={this.state.tasks} removeTask={this.removeTask} />
         </div>
       </div>
     );

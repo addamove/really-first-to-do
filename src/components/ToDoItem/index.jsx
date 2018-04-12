@@ -22,16 +22,19 @@ const item = (props) => {
     </li>
   ));
 
+  const Collection =
+    tasks.length !== 0 ? (
+      <ul className="collection with-header">
+        <li className="collection-header">
+          <h4>ToDos</h4>
+        </li>
+        {tasks}
+      </ul>
+    ) : null;
+
   return (
     <div className="row">
-      <div className="col s6 offset-s3">
-        <ul className="collection with-header">
-          <li className="collection-header">
-            <h4>ToDos</h4>
-          </li>
-          {tasks}
-        </ul>
-      </div>
+      <div className="col s12 m6 offset-m3">{Collection}</div>
     </div>
   );
 };

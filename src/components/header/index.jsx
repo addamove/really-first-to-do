@@ -5,10 +5,9 @@ const header = () => (
     <div className="nav-wrapper purple darken-2">
       <div className="container">
         <a href="#!" className="brand-logo center">
-          <i className="material-icons">call_missed_outgoing</i>
-          GrapeToDo
+          <i className="material-icons hide-on-small-only">call_missed_outgoing</i>
+          GrapeTD
         </a>
-        <ul id="nav-mobile" className="right " />
       </div>
     </div>
   </nav>
