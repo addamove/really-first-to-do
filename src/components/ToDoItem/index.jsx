@@ -6,16 +6,16 @@ const item = (props) => {
   };
 
   const tasks = props.tasks.map(task => (
-    <li
-      className="collection-item"
-      key={task.key}
-      onClick={() => {
-        removeTask(task.key);
-      }}
-    >
+    <li className="collection-item" key={task.key}>
       <div className="animated shake">
         {task.text}
-        <a href="#!" className="secondary-content">
+        <a
+          onClick={() => {
+            removeTask(task.key);
+          }}
+          href="#!"
+          className="secondary-content"
+        >
           <i className="material-icons">close</i>
         </a>
       </div>

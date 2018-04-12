@@ -29,6 +29,12 @@ class App extends Component {
     });
   }
 
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      console.log('do validate');
+    }
+  }
+
   handleChangeValue(e) {
     this.setState({ input: e.target.value });
   }
@@ -42,6 +48,7 @@ class App extends Component {
           <Input
             value={this.state.input}
             onChangeValue={this.handleChangeValue}
+            onKeyPress={this.handleKeyPress}
             addItem={this.addItem}
           />
           <ToDo tasks={this.state.tasks} removeTask={this.removeTask} />
