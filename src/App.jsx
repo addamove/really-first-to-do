@@ -7,11 +7,12 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { tasks: [], input: '' };
+    this.state = { tasks: [], input: '', animate: '' };
 
     this.addItem = this.addItem.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
     this.removeTask = this.removeTask.bind(this);
+    this.sort = this.sort.bind(this);
   }
 
   addItem() {
@@ -29,14 +30,19 @@ class App extends Component {
     });
   }
 
-  handleKeyPress(e) {
-    if (e.key === 'Enter') {
-      console.log('do validate');
-    }
-  }
-
   handleChangeValue(e) {
     this.setState({ input: e.target.value });
+  }
+
+  sort() {
+    const newTasks = this.state.tasks
+      .map(task => task.text)
+      .sort()
+      .map((text, index) => ({ text, key: this.state.tasks[index].key }));
+    this.setState(() => ({ tasks: newTasks, animate: 'animated wobble' }));
+    setTimeout(() => {
+      this.setState(() => ({ animate: '' }));
+    }, 500);
   }
 
   render() {
@@ -51,7 +57,12 @@ class App extends Component {
             onKeyPress={this.handleKeyPress}
             addItem={this.addItem}
           />
-          <ToDo tasks={this.state.tasks} removeTask={this.removeTask} />
+          <ToDo
+            animate={this.state.animate}
+            tasks={this.state.tasks}
+            removeTask={this.removeTask}
+            sort={this.sort}
+          />
         </div>
       </div>
     );

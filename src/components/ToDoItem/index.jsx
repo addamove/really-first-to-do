@@ -6,8 +6,8 @@ const item = (props) => {
   };
 
   const tasks = props.tasks.map(task => (
-    <li className="collection-item" key={task.key}>
-      <div className="animated shake">
+    <li className="collection-item " key={task.key}>
+      <div className="animated shake ">
         {task.text}
         <a
           onClick={() => {
@@ -16,7 +16,7 @@ const item = (props) => {
           href="#!"
           className="secondary-content"
         >
-          <i className="material-icons">close</i>
+          <i className="material-icons ">close</i>
         </a>
       </div>
     </li>
@@ -24,9 +24,15 @@ const item = (props) => {
 
   const Collection =
     tasks.length !== 0 ? (
-      <ul className="collection with-header">
+      <ul className={`collection with-header  z-depth-1 + ${props.animate}`}>
         <li className="collection-header">
-          <h4>ToDos</h4>
+          <h4>
+            ToDos{' '}
+            <button className="btn right purple lighten-3 m3 z-depth-4" onClick={props.sort}>
+              {' '}
+              SORT
+            </button>
+          </h4>
         </li>
         {tasks}
       </ul>
