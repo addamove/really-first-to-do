@@ -16,7 +16,7 @@ const Input = props => (
         </div>
         <button
           onClick={props.addItem}
-          className="btn waves-effect waves-light right purple lighten-2 m3"
+          className="btn waves-effect waves-light right  teal accent-4 m3"
         >
           <i className="material-icons center">add</i>
         </button>
