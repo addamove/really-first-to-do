@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
+import Navigation from './components/Navigation';
 import ToDo from './components/ToDo/';
 import Input from './components/Input';
 
@@ -109,7 +109,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header showTasks={this.showTasks} />
+        <Navigation showTasks={this.showTasks} />
         <div className="container">
           <br />
           <Input
