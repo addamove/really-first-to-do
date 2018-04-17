@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Input = props => (
   <div className="row">
@@ -9,8 +10,10 @@ const Input = props => (
             value={props.value}
             onChange={props.onChangeValue}
             onKeyPress={(e) => {
-              e.key === 'Enter' ? props.addItem() : null;
-            }}
+                if (e.key === 'Enter') {
+                  props.addItem();
+                }
+              }}
             placeholder="Enter task"
           />
         </div>
@@ -24,5 +27,11 @@ const Input = props => (
     </div>
   </div>
 );
+
+Input.propTypes = {
+  value: PropTypes.func.isRequired,
+  onChangeValue: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
+};
 
 export default Input;

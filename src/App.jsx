@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation';
-import ToDo from './components/ToDo/';
+import ToDo from './containers/ToDo/';
 import Input from './components/Input';
 
 class App extends Component {
@@ -78,7 +78,6 @@ class App extends Component {
         input: '',
         filteredTasks: [...prevState.filteredTasks, newItem],
       }));
-      console.log(this.state);
     }
   }
 
@@ -124,8 +123,8 @@ class App extends Component {
             animate={this.state.animate}
             tasks={this.state.filteredTasks}
             onCloseClick={this.onCloseClick}
-            sort={this.sort}
-            clear={this.clear}
+            onSortButton={this.sort}
+            onClearButton={this.clear}
             onCheckClick={this.onCheckClick}
           />
         </main>
