@@ -28,7 +28,8 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## ToDo
 
-* Refactor and slice into more components
+* Refactor and slice into more components(Remove all state into ToDo container)
+* Add Drag and drope feature
 * Add redux
 * Add Notes Feature
 * Add immutable.js
