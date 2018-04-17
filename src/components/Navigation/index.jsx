@@ -11,7 +11,7 @@ const header = props => (
         <ul id="nav-mobile" className="right">
           <li>
             <button
-              className="waves-effect waves-teal btn-flat  hide-on-med-and-down"
+              className=" white-text waves-effect waves-teal btn-flat  hide-on-med-and-down"
               onClick={() => props.showTasks('SHOW_ACTIVE')}
             >
               show active
@@ -19,7 +19,7 @@ const header = props => (
           </li>
           <li>
             <button
-              className="waves-effect waves-teal btn-flat  hide-on-med-and-down"
+              className=" white-text waves-effect waves-teal btn-flat  hide-on-med-and-down"
               onClick={() => props.showTasks()}
             >
               show all
@@ -27,7 +27,7 @@ const header = props => (
           </li>
           <li>
             <button
-              className="waves-effect waves-teal btn-flat  hide-on-med-and-down"
+              className="  white-text waves-effect waves-teal btn-flat  hide-on-med-and-down"
               onClick={() => props.showTasks('SHOW_COMPLETED')}
             >
               show completed

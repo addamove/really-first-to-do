@@ -25,8 +25,10 @@ class App extends Component {
   }
 
   onCloseClick(key) {
+    const refreshedTasks = this.state.tasks.filter(task => task.key !== key);
     this.setState({
-      tasks: this.state.tasks.filter(task => task.key !== key),
+      tasks: refreshedTasks,
+      filteredTasks: refreshedTasks,
     });
   }
 
@@ -110,7 +112,7 @@ class App extends Component {
     return (
       <div>
         <Navigation showTasks={this.showTasks} />
-        <div className="container">
+        <main className="container">
           <br />
           <Input
             value={this.state.input}
@@ -126,7 +128,7 @@ class App extends Component {
             clear={this.clear}
             onCheckClick={this.onCheckClick}
           />
-        </div>
+        </main>
       </div>
     );
   }

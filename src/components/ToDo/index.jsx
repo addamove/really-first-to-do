@@ -50,7 +50,7 @@ const item = (props) => {
               SORT
             </button>
             <button
-              className="waves-effect right waves-black btn-flat z-depth-4  "
+              className="waves-effect right waves-black btn-flat z-depth-4 hide-on-small-only "
               onClick={props.clear}
             >
               {' '}
@@ -61,7 +61,12 @@ const item = (props) => {
 
         {tasks}
       </ul>
-    ) : null;
+    ) : (
+      <div>
+        <h2>A bit empy here...</h2>
+        <h5>Add some ToDo...</h5>
+      </div>
+    );
 
   return (
     <div className="row">
