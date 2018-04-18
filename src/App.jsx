@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation';
-import ToDo from './containers/ToDo/';
+import ToDo from './containers/ToDo';
 import Input from './components/Input';
 
 class App extends Component {
@@ -9,10 +9,10 @@ class App extends Component {
 
     this.state = {
       tasks: [],
-      filteredTasks: [],
       input: '',
       animate: '',
       index: 0,
+      tasksFilter: '',
     };
 
     this.addItem = this.addItem.bind(this);
@@ -21,14 +21,13 @@ class App extends Component {
     this.onCheckClick = this.onCheckClick.bind(this);
     this.sort = this.sort.bind(this);
     this.clear = this.clear.bind(this);
-    this.showTasks = this.showTasks.bind(this);
+    this.changeTasksFilter = this.changeTasksFilter.bind(this);
   }
 
   onCloseClick(key) {
     const refreshedTasks = this.state.tasks.filter(task => task.key !== key);
     this.setState({
       tasks: refreshedTasks,
-      filteredTasks: refreshedTasks,
     });
   }
 
@@ -41,48 +40,30 @@ class App extends Component {
         i = index;
       }
     }
-
-    this.state.tasks[i].completed = !this.state.tasks[i].completed;
+    this.setState(() => ({
+      completed: !this.state.tasks[i].completed,
+    }));
 
     this.forceUpdate();
   }
 
-  showTasks(filter) {
-    switch (filter) {
-      case 'SHOW_COMPLETED':
-        this.setState(() => ({
-          filteredTasks: [...this.state.tasks.filter(task => task.completed)],
-        }));
-
-        break;
-
-      case 'SHOW_ACTIVE':
-        this.setState(() => ({
-          filteredTasks: [...this.state.tasks.filter(task => !task.completed)],
-        }));
-        break;
-
-      default:
-        this.setState(() => ({
-          filteredTasks: this.state.tasks,
-        }));
-    }
+  changeTasksFilter(filter) {
+    this.setState({ tasksFilter: filter });
   }
 
   addItem() {
     if (this.state.input.replace(/\s/g, '') !== '') {
       const newItem = { text: this.state.input, key: this.state.index, completed: false };
-      this.state.index += 1;
       this.setState(prevState => ({
         tasks: [...prevState.tasks, newItem],
         input: '',
-        filteredTasks: [...prevState.filteredTasks, newItem],
+        index: this.state.index + 1,
       }));
     }
   }
 
   clear() {
-    this.setState(() => ({ tasks: [], filteredTasks: [] }));
+    this.setState(() => ({ tasks: [] }));
   }
 
   handleChangeValue(e) {
@@ -90,7 +71,7 @@ class App extends Component {
   }
 
   sort() {
-    const newTasks = this.state.filteredTasks
+    const newTasks = this.state.tasks
       .map(task => task.text)
       .sort()
       .map((text, index) => ({
@@ -99,7 +80,7 @@ class App extends Component {
         completed: this.state.tasks[index].completed,
       }));
     // set animation
-    this.setState(() => ({ filteredTasks: newTasks, animate: 'animated wobble' }));
+    this.setState(() => ({ tasks: newTasks, animate: 'animated wobble' }));
 
     // remove animation
     setTimeout(() => {
@@ -110,7 +91,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navigation showTasks={this.showTasks} />
+        <Navigation changeTasksFilter={this.changeTasksFilter} />
         <main className="container">
           <br />
           <Input
@@ -121,7 +102,8 @@ class App extends Component {
           />
           <ToDo
             animate={this.state.animate}
-            tasks={this.state.filteredTasks}
+            tasks={this.state.tasks}
+            tasksFilter={this.state.tasksFilter}
             onCloseClick={this.onCloseClick}
             onSortButton={this.sort}
             onClearButton={this.clear}

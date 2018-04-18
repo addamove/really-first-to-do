@@ -10,10 +10,10 @@ const Input = props => (
             value={props.value}
             onChange={props.onChangeValue}
             onKeyPress={(e) => {
-                if (e.key === 'Enter') {
-                  props.addItem();
-                }
-              }}
+              if (e.key === 'Enter') {
+                props.addItem();
+              }
+            }}
             placeholder="Enter task"
           />
         </div>
@@ -29,9 +29,13 @@ const Input = props => (
 );
 
 Input.propTypes = {
-  value: PropTypes.func.isRequired,
+  value: PropTypes.string,
   onChangeValue: PropTypes.func.isRequired,
   addItem: PropTypes.func.isRequired,
+};
+
+Input.defaultProps = {
+  value: '',
 };
 
 export default Input;

@@ -10,7 +10,7 @@ const Task = (props) => {
   }
 
   return (
-    <li className="collection-item avatar animated taskText pulse flow-text" key={props.task.key}>
+    <li className="collection-item avatar animated slideInUp flow-text">
       <div
         tabIndex={0}
         role="button"

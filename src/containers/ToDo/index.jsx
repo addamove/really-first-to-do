@@ -3,8 +3,32 @@ import PropTypes from 'prop-types';
 import Task from '../../components/Task';
 
 const ToDo = (props) => {
-  const tasks = props.tasks.map(task => (
-    <Task task={task} onCheckClick={props.onCheckClick} onCloseClick={props.onCloseClick} />
+  // filtering tasks depending on props.tasksFilter
+  let filteredTasks;
+  switch (props.tasksFilter) {
+    case 'SHOW_ACTIVE': {
+      filteredTasks = props.tasks.filter(task => !task.completed);
+      break;
+    }
+
+    case 'SHOW_COMPLETED': {
+      filteredTasks = props.tasks.filter(task => task.completed);
+      break;
+    }
+
+    default: {
+      filteredTasks = props.tasks;
+      break;
+    }
+  }
+  // actually create tasks array
+  const tasks = filteredTasks.map(task => (
+    <Task
+      task={task}
+      key={task.key}
+      onCheckClick={props.onCheckClick}
+      onCloseClick={props.onCloseClick}
+    />
   ));
 
   const Collection =
@@ -35,7 +59,6 @@ const ToDo = (props) => {
         <h5>Add some ToDo...</h5>
       </div>
     );
-
   return (
     <div className="row">
       <div className="col s12 m6 offset-m3">{Collection}</div>
@@ -44,15 +67,17 @@ const ToDo = (props) => {
 };
 
 ToDo.propTypes = {
-  tasks: PropTypes.arr,
+  tasks: PropTypes.arrayOf(PropTypes.object),
   onClearButton: PropTypes.func.isRequired,
   onCheckClick: PropTypes.func.isRequired,
   onSortButton: PropTypes.func.isRequired,
   onCloseClick: PropTypes.func.isRequired,
   animate: PropTypes.string,
+  tasksFilter: PropTypes.string,
 };
 
 ToDo.defaultProps = {
+  tasksFilter: 'SHOW_ALL',
   animate: '',
   tasks: [],
 };

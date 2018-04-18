@@ -13,7 +13,7 @@ const Navigation = props => (
           <li>
             <button
               className=" white-text waves-effect waves-teal btn-flat  hide-on-med-and-down"
-              onClick={() => props.showTasks('SHOW_ACTIVE')}
+              onClick={() => props.changeTasksFilter('SHOW_ACTIVE')}
             >
               show active
             </button>
@@ -21,7 +21,7 @@ const Navigation = props => (
           <li>
             <button
               className=" white-text waves-effect waves-teal btn-flat  hide-on-med-and-down"
-              onClick={() => props.showTasks()}
+              onClick={() => props.changeTasksFilter('SHOW_ALL')}
             >
               show all
             </button>
@@ -29,7 +29,7 @@ const Navigation = props => (
           <li>
             <button
               className="  white-text waves-effect waves-teal btn-flat  hide-on-med-and-down"
-              onClick={() => props.showTasks('SHOW_COMPLETED')}
+              onClick={() => props.changeTasksFilter('SHOW_COMPLETED')}
             >
               show completed
             </button>
@@ -44,7 +44,7 @@ const Navigation = props => (
 );
 
 Navigation.propTypes = {
-  showTasks: PropTypes.func.isRequired,
+  changeTasksFilter: PropTypes.func.isRequired,
 };
 
 export default Navigation;
