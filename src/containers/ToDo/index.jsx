@@ -11,12 +11,15 @@ class ToDo extends Component {
       tasks: [],
       index: 0,
       input: '',
+      animate: '',
     };
 
     this.onCloseClick = this.onCloseClick.bind(this);
     this.onCheckClick = this.onCheckClick.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.sort = this.sort.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   onCloseClick(key) {
@@ -53,8 +56,30 @@ class ToDo extends Component {
     }
   }
 
+  clear() {
+    this.setState(() => ({ tasks: [] }));
+  }
+
   handleChangeValue(e) {
     this.setState({ input: e.target.value });
+  }
+
+  sort() {
+    const newTasks = this.state.tasks
+      .map(task => task.text)
+      .sort()
+      .map((text, index) => ({
+        text,
+        key: this.state.tasks[index].key,
+        completed: this.state.tasks[index].completed,
+      }));
+    // set animation
+    this.setState(() => ({ tasks: newTasks, animate: 'animated wobble' }));
+
+    // remove animation
+    setTimeout(() => {
+      this.setState(() => ({ animate: '' }));
+    }, 500);
   }
 
   render() {
@@ -71,9 +96,9 @@ class ToDo extends Component {
             tasks={this.state.tasks}
             onCheckClick={this.onCheckClick}
             onCloseClick={this.onCloseClick}
-            animate={this.props.animate}
-            onSortButton={this.props.onSortButton}
-            onClearButton={this.props.onClearButton}
+            animate={this.state.animate}
+            onSortButton={this.sort}
+            onClearButton={this.clear}
           />
         </div>
       </div>

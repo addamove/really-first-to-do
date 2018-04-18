@@ -7,12 +7,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-      animate: '',
       tasksFilter: '',
     };
 
-    this.sort = this.sort.bind(this);
-    this.clear = this.clear.bind(this);
     this.changeTasksFilter = this.changeTasksFilter.bind(this);
   }
 
@@ -20,32 +17,10 @@ class App extends Component {
     this.setState({ tasksFilter: filter });
   }
 
-  clear() {
-    this.setState(() => ({ tasks: [] }));
-  }
-
-  sort() {
-    const newTasks = this.state.tasks
-      .map(task => task.text)
-      .sort()
-      .map((text, index) => ({
-        text,
-        key: this.state.tasks[index].key,
-        completed: this.state.tasks[index].completed,
-      }));
-    // set animation
-    this.setState(() => ({ tasks: newTasks, animate: 'animated wobble' }));
-
-    // remove animation
-    setTimeout(() => {
-      this.setState(() => ({ animate: '' }));
-    }, 500);
-  }
-
   render() {
     return (
       <div>
-        <Navigation changeTasksFilter={this.changeTasksFilter} />
+        <Navigation filter={this.state.tasksFilter} changeTasksFilter={this.changeTasksFilter} />
         <br />
 
         <main className="container">
