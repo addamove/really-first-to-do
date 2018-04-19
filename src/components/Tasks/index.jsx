@@ -37,42 +37,44 @@ const Tasks = (props) => {
     />
   ));
 
-  return tasks.length !== 0 ? (
-    <div className="animated fadeIn">
-      <ul className="collection ">
-        <li className="collection-item">
-          {' '}
-          <button className="btn  teal   m3 z-depth-4 " onClick={props.onSortButton}>
+  return tasks.length !== 0 ||
+    (props.tasksFilter === 'SHOW_ACTIVE' && props.tasks.length !== 0) ||
+    (props.tasksFilter === 'SHOW_COMPLETED' && props.tasks.length !== 0) ? (
+      <div className="animated fadeIn">
+        <ul className="collection ">
+          <li className="collection-item">
             {' '}
+            <button className="btn  teal   m3 z-depth-4 " onClick={props.onSortButton}>
+              {' '}
             SORT
-          </button>
-          <button
-            className="waves-effect  z-depth-4  waves-black btn-flat "
-            onClick={props.onClearButton}
-          >
-            {' '}
+            </button>
+            <button
+              className="waves-effect  z-depth-4  waves-black btn-flat "
+              onClick={props.onClearButton}
+            >
+              {' '}
             CLEAR
-          </button>
-        </li>
-      </ul>
+            </button>
+          </li>
+        </ul>
 
-      <ul className={`collection with-header  z-depth-1 + ${props.animate}`}>
-        <li className="collection-header ">
-          <h4>
-            <span className="hide-on-small-only">{ToDosHeaderText}</span>
-            <span className="hide-on-med-and-up">ToDo</span>
-          </h4>
-        </li>
+        <ul className={`collection with-header  z-depth-1 + ${props.animate}`}>
+          <li className="collection-header ">
+            <h4>
+              <span className="hide-on-small-only">{ToDosHeaderText}</span>
+              <span className="hide-on-med-and-up">ToDo</span>
+            </h4>
+          </li>
 
-        {tasks}
-      </ul>
-    </div>
-  ) : (
-    <div className="animated bounce">
-      <h2>A bit empy here...</h2>
-      <h5>Add some ToDo...</h5>
-    </div>
-  );
+          {tasks}
+        </ul>
+      </div>
+    ) : (
+      <div className="animated bounce">
+        <h2>A bit empy here...</h2>
+        <h5>Add some ToDo...</h5>
+      </div>
+    );
 };
 
 Tasks.propTypes = {
