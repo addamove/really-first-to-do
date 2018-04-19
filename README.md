@@ -28,7 +28,5 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## ToDo
 
-* Fix animations
 * Add redux
-* Add Drag and drope feature
 * Add immutable.js

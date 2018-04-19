@@ -17,7 +17,7 @@ const Input = props => (
             placeholder="Enter task"
           />{' '}
           <button
-            style={{ margin: '-64px 6px' }}
+            style={{ margin: '-64px 14px' }}
             onClick={props.addItem}
             className="btn-flat waves-effect waves-light right   grey lighten-3 "
           >

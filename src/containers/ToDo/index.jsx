@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Tasks from '../../components/Tasks/';
-// import PropTypes from 'prop-types';
 import Input from '../../components/Input';
 
 class ToDo extends Component {
@@ -107,21 +106,5 @@ class ToDo extends Component {
     );
   }
 }
-
-// ToDo.propTypes = {
-//   tasks: PropTypes.arrayOf(PropTypes.object),
-//   onClearButton: PropTypes.func.isRequired,
-//   onCheckClick: PropTypes.func.isRequired,
-//   onSortButton: PropTypes.func.isRequired,
-//   onCloseClick: PropTypes.func.isRequired,
-//   animate: PropTypes.string,
-//   tasksFilter: PropTypes.string,
-// };
-
-// ToDo.defaultProps = {
-//   tasksFilter: 'SHOW_ALL',
-//   animate: '',
-//   tasks: [],
-// };
 
 export default ToDo;

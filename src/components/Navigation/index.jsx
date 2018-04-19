@@ -60,6 +60,7 @@ const Navigation = (props) => {
 
 Navigation.propTypes = {
   changeTasksFilter: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
 };
 
 export default Navigation;

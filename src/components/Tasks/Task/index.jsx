@@ -10,7 +10,10 @@ const Task = (props) => {
   }
 
   return (
-    <li className="collection-item avatar animated slideInUp flow-text">
+    <li
+      className="collection-item avatar animated slideInUp flow-text"
+      style={{ marginTop: '14px' }}
+    >
       <div
         tabIndex={0}
         role="button"
@@ -32,7 +35,7 @@ const Task = (props) => {
       </div>
       <span className="title" style={status}>
         {' '}
-        {props.task.text.match(new RegExp(`.{1,${15}}`, 'g')).join('\n')}
+        {props.task.text.match(new RegExp(`.{1,${30}}`, 'g')).join('\n')}
       </span>
 
       <a

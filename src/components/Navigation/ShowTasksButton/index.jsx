@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ShowTasksButton = props => (
   <li>
@@ -10,5 +11,10 @@ const ShowTasksButton = props => (
     </button>
   </li>
 );
+
+ShowTasksButton.propTypes = {
+  onButtonClick: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+};
 
 export default ShowTasksButton;
