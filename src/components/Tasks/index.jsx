@@ -4,7 +4,6 @@ import Task from './Task';
 const Tasks = (props) => {
   let filteredTasks;
   let ToDosHeaderText;
-  let HeaderAnimation;
   // filtering tasks depending on props.tasksFilter
   switch (props.tasksFilter) {
     case 'SHOW_ACTIVE': {
@@ -41,14 +40,15 @@ const Tasks = (props) => {
     <ul className={`collection with-header  z-depth-1 + ${props.animate}`}>
       <li className="collection-header ">
         <h4>
-          {ToDosHeaderText}
+          <span className="hide-on-small-only">{ToDosHeaderText}</span>
+          <span className="show-on-small-only">ToDo</span>
 
           <button className="btn right teal  m3 z-depth-4 " onClick={props.onSortButton}>
             {' '}
             SORT
           </button>
           <button
-            className="waves-effect right waves-black btn-flat z-depth-4 hide-on-small-only "
+            className="waves-effect right waves-black btn-flat "
             onClick={props.onClearButton}
           >
             {' '}

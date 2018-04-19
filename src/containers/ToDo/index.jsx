@@ -84,22 +84,24 @@ class ToDo extends Component {
 
   render() {
     return (
-      <div className="row">
-        <Input
-          value={this.state.input}
-          onChangeValue={this.handleChangeValue}
-          addItem={this.addItem}
-        />
-        <div className="col s12 m6 offset-m3">
-          <Tasks
-            tasksFilter={this.props.tasksFilter}
-            tasks={this.state.tasks}
-            onCheckClick={this.onCheckClick}
-            onCloseClick={this.onCloseClick}
-            animate={this.state.animate}
-            onSortButton={this.sort}
-            onClearButton={this.clear}
+      <div className="container">
+        <div className="row">
+          <Input
+            value={this.state.input}
+            onChangeValue={this.handleChangeValue}
+            addItem={this.addItem}
           />
+          <div className="col s12 m6 offset-m3">
+            <Tasks
+              tasksFilter={this.props.tasksFilter}
+              tasks={this.state.tasks}
+              onCheckClick={this.onCheckClick}
+              onCloseClick={this.onCloseClick}
+              animate={this.state.animate}
+              onSortButton={this.sort}
+              onClearButton={this.clear}
+            />
+          </div>
         </div>
       </div>
     );

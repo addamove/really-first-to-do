@@ -32,7 +32,7 @@ const Task = (props) => {
       </div>
       <span className="title" style={status}>
         {' '}
-        {props.task.text}
+        {props.task.text.match(new RegExp(`.{1,${15}}`, 'g')).join('\n')}
       </span>
 
       <a

@@ -22,8 +22,9 @@ class App extends Component {
       <div>
         <Navigation filter={this.state.tasksFilter} changeTasksFilter={this.changeTasksFilter} />
         <br />
+        <br />
 
-        <main className="container">
+        <main>
           <ToDo
             animate={this.state.animate}
             tasksFilter={this.state.tasksFilter}

@@ -5,7 +5,7 @@ const Input = props => (
   <div className="row">
     <div className="col s12 m6 offset-m3">
       <div className="row">
-        <div className="input-field   col s12 m8 l9">
+        <div className="input-field   col s12  l12">
           <input
             value={props.value}
             onChange={props.onChangeValue}
@@ -15,14 +15,15 @@ const Input = props => (
               }
             }}
             placeholder="Enter task"
-          />
+          />{' '}
+          <button
+            style={{ margin: '-64px 6px' }}
+            onClick={props.addItem}
+            className="btn-flat waves-effect waves-light right   grey lighten-3 "
+          >
+            <i className="material-icons center">add</i>
+          </button>
         </div>
-        <button
-          onClick={props.addItem}
-          className="btn waves-effect waves-light right  teal accent-4 m3"
-        >
-          <i className="material-icons center">add</i>
-        </button>
       </div>
     </div>
   </div>
