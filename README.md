@@ -30,3 +30,4 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 * Add redux
 * Add immutable.js
+* refactor into more components
