@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CheckButton from './CheckButton';
 
 const Task = (props) => {
   let status = { textDecoration: 'none' };
@@ -14,30 +15,11 @@ const Task = (props) => {
       className="collection-item avatar animated slideInUp flow-text"
       style={{ marginTop: '14px' }}
     >
-      <div
-        tabIndex={0}
-        role="button"
-        onClick={() => {
-          props.onCheckClick(props.task.key);
-        }}
-        onKeyDown={() => {
-          props.onCheckClick(props.task.key);
-        }}
-      >
-        <i
-          className="material-icons circle blue lighten-3"
-          style={{
-            cursor: 'pointer',
-          }}
-        >
-          check
-        </i>
-      </div>
       <span className="title" style={status}>
         {' '}
-        {props.task.text.match(new RegExp(`.{1,${30}}`, 'g')).join('\n')}
+        {props.task.text}
       </span>
-
+      <CheckButton onCheckClick={props.onCheckClick} task={props.task} />
       <a
         onClick={() => {
           props.onCloseClick(props.task.key);

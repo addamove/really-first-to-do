@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Tasks from '../../components/Tasks/';
 import Input from '../../components/Input';
 
@@ -90,7 +91,7 @@ class ToDo extends Component {
             onChangeValue={this.handleChangeValue}
             addItem={this.addItem}
           />
-          <div className="col s12 m6 offset-m3">
+          <div className="col s12 m7 offset-m3">
             <Tasks
               tasksFilter={this.props.tasksFilter}
               tasks={this.state.tasks}
@@ -106,5 +107,9 @@ class ToDo extends Component {
     );
   }
 }
+
+ToDo.propTypes = {
+  tasksFilter: PropTypes.func.isRequired,
+};
 
 export default ToDo;
