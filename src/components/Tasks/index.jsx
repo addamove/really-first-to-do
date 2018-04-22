@@ -72,7 +72,7 @@ const Tasks = (props) => {
     ) : (
       <div className="animated bounce">
         <h2>A bit empy here...</h2>
-        <h5>Add some ToDo...</h5>
+        <h5>Let`s add some ToDo!</h5>
       </div>
     );
 };

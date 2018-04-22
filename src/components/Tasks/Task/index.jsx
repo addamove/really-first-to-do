@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import CheckButton from './CheckButton';
 
 const Task = (props) => {
-  let status = { textDecoration: 'none' };
+  let status = { textDecorationLine: 'none' };
   if (props.task.completed) {
-    status = { textDecoration: 'line-through' };
+    status = { textDecorationLine: 'line-through' };
   } else {
-    status = { textDecoration: 'none' };
+    status = { textDecorationLine: 'none' };
   }
 
   return (
     <li
-      className="collection-item avatar animated slideInUp flow-text"
+      className="collection-item avatar animated slideInUp flow-text "
       style={{ marginTop: '14px' }}
     >
       <span className="title" style={status}>
