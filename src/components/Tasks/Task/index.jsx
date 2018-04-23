@@ -22,7 +22,7 @@ const Task = (props) => {
       <CheckButton onCheckClick={props.onCheckClick} task={props.task} />
       <a
         onClick={() => {
-          props.onCloseClick(props.task.key);
+          props.onCloseClick(props.task.id);
         }}
         href="#!"
         className="secondary-content"
@@ -39,7 +39,7 @@ Task.propTypes = {
   task: PropTypes.shape({
     text: PropTypes.string,
     completed: PropTypes.bool,
-    key: PropTypes.number,
+    id: PropTypes.number,
   }).isRequired,
 };
 

@@ -1,37 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Task from './Task';
+import { clearTasks, toggleTasks, closeTask, sortTasks } from './../../actions/';
 
+const ToDosHeaderText = 'TEST';
+let animate;
 const Tasks = (props) => {
-  let filteredTasks;
-  let ToDosHeaderText;
   // filtering tasks depending on props.tasksFilter
-  switch (props.tasksFilter) {
-    case 'SHOW_ACTIVE': {
-      ToDosHeaderText = 'Active ToDos';
 
-      filteredTasks = props.tasks.filter(task => !task.completed);
-      break;
-    }
-
-    case 'SHOW_COMPLETED': {
-      ToDosHeaderText = 'Completed ToDos';
-
-      filteredTasks = props.tasks.filter(task => task.completed);
-      break;
-    }
-
-    default: {
-      ToDosHeaderText = 'All ToDos';
-      filteredTasks = props.tasks;
-      break;
-    }
-  }
-
-  const tasks = filteredTasks.map(task => (
+  const tasks = props.tasks.map(task => (
     <Task
       task={task}
-      key={task.key}
+      key={task.id}
       onCheckClick={props.onCheckClick}
       onCloseClick={props.onCloseClick}
     />
@@ -44,7 +25,17 @@ const Tasks = (props) => {
         <ul className="collection ">
           <li className="collection-item">
             {' '}
-            <button className="btn  teal   m3 z-depth-4 " onClick={props.onSortButton}>
+            <button
+              className="btn  teal   m3 z-depth-4 "
+              onClick={() => {
+              props.onSortButton();
+              animate = 'animated wobble';
+              // remove animation
+              setTimeout(() => {
+                animate = '';
+              }, 500);
+            }}
+            >
               {' '}
             SORT
             </button>
@@ -58,7 +49,7 @@ const Tasks = (props) => {
           </li>
         </ul>
 
-        <ul className={`collection with-header  z-depth-1 + ${props.animate}`}>
+        <ul className={`collection with-header  z-depth-1 + ${animate}`}>
           <li className="collection-header ">
             <h4>
               <span className="hide-on-small-only">{ToDosHeaderText}</span>
@@ -93,4 +84,19 @@ Tasks.defaultProps = {
   tasks: [],
 };
 
-export default Tasks;
+const mapDispatchToProps = dispatch => ({
+  onClearButton: () => {
+    dispatch(clearTasks());
+  },
+  onCheckClick: (id) => {
+    dispatch(toggleTasks(id));
+  },
+  onCloseClick: (id) => {
+    dispatch(closeTask(id));
+  },
+  onSortButton: () => {
+    dispatch(sortTasks());
+  },
+});
+
+export default connect(null, mapDispatchToProps)(Tasks);

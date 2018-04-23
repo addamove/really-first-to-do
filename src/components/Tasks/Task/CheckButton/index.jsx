@@ -6,10 +6,10 @@ const CheckButton = props => (
     tabIndex={0}
     role="button"
     onClick={() => {
-      props.onCheckClick(props.task.key);
+      props.onCheckClick(props.task.id);
     }}
     onKeyDown={() => {
-      props.onCheckClick(props.task.key);
+      props.onCheckClick(props.task.id);
     }}
   >
     <i
@@ -29,7 +29,7 @@ CheckButton.propTypes = {
   task: PropTypes.shape({
     text: PropTypes.string,
     completed: PropTypes.bool,
-    key: PropTypes.number,
+    id: PropTypes.number,
   }).isRequired,
 };
 

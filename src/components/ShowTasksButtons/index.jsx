@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ShowTasksButton from './ShowTasksButton';
 
 const ShowTasksButtons = (props) => {
-  // Show only one button at one time
+  // Show only one button(done/active)
   let showTasksSwitch;
   if (props.filter === 'SHOW_ACTIVE') {
     showTasksSwitch = (

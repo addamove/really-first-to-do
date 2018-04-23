@@ -2,6 +2,8 @@
 
 My Demo react project for learning purpose. Also because every developer should build ToDo project.😄
 
+P.S In this repo I will try new things just for practise and curiosity
+
 ## Getting Started
 
 npm start - run local server
@@ -21,13 +23,3 @@ nodeJS v6 or up
 
 * [create-react-app](https://github.com/facebook/create-react-app)
 * [MaterializeCSS](http://materializecss.com/)
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## ToDo
-
-* Add redux
-* Add immutable.js
-* refactor into more components

@@ -1,42 +1,49 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addItem } from '../../actions/index';
 
-const Input = props => (
-  <div className="row">
-    <div className="col s12 m6 offset-m3">
-      <div className="row">
-        <div className="input-field   col s12  l12">
-          <input
-            value={props.value}
-            onChange={props.onChangeValue}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
-                props.addItem();
-              }
-            }}
-            placeholder="Enter task"
-          />{' '}
-          <button
-            style={{ margin: '-64px 14px' }}
-            onClick={props.addItem}
-            className="btn-flat waves-effect waves-light right   grey lighten-3 "
-          >
-            <i className="material-icons center">add</i>
-          </button>
+const Input = (props) => {
+  let input;
+  return (
+    <div className="row">
+      <div className="col s12 m6 offset-m3">
+        <div className="row">
+          <div className="input-field   col s12  l12">
+            <input
+              ref={(node) => {
+                input = node;
+              }}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  // dispatch(addItem(input.value));
+                }
+              }}
+              placeholder="Enter task"
+            />{' '}
+            <button
+              style={{ margin: '-64px 14px' }}
+              onClick={() => {
+                if (input.value.replace(/\s/g, '') !== '') {
+                  props.addItem(input.value);
+                }
+                input.value = '';
+              }}
+              className="btn-flat waves-effect waves-light right   grey lighten-3 "
+            >
+              <i className="material-icons center">add</i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
-
-Input.propTypes = {
-  value: PropTypes.string,
-  onChangeValue: PropTypes.func.isRequired,
-  addItem: PropTypes.func.isRequired,
+  );
 };
 
-Input.defaultProps = {
-  value: '',
-};
+const mapDispatchToProps = dispatch => ({
+  addItem: (value) => {
+    dispatch(addItem(value));
+  },
+});
 
-export default Input;
+export default connect(null, mapDispatchToProps)(Input);
