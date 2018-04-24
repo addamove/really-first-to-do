@@ -5,6 +5,23 @@ import { connect } from 'react-redux';
 import ShowTasksButton from './ShowTasksButton';
 
 const ShowTasksButtons = (props) => {
+  const EyeIcon = () => (
+    <div style={{ margin: '1px 14px 1px 0px' }} className="left">
+      <i className="material-icons ">remove_red_eye</i>
+    </div>
+  );
+
+  const ShowAllTasksButton = () => (
+    <li>
+      <button
+        className=" white-text waves-effect waves-teal btn-flat "
+        onClick={() => props.changeTasksFilter('SHOW_ALL')}
+      >
+        all
+      </button>
+    </li>
+  );
+
   // Show only one button(done/active)
   let showTasksSwitch;
   if (props.filter === 'SHOW_ACTIVE') {
@@ -29,18 +46,8 @@ const ShowTasksButtons = (props) => {
 
   return (
     <ul className="right">
-      <div style={{ margin: '1px 14px 1px 0px' }} className="left">
-        <i className="material-icons ">remove_red_eye</i>
-      </div>
-
-      <li>
-        <button
-          className=" white-text waves-effect waves-teal btn-flat "
-          onClick={() => props.changeTasksFilter('SHOW_ALL')}
-        >
-          all
-        </button>
-      </li>
+      <EyeIcon />
+      <ShowAllTasksButton />
       {showTasksSwitch}
     </ul>
   );

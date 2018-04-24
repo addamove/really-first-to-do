@@ -10,6 +10,18 @@ const Task = (props) => {
     status = { textDecorationLine: 'none' };
   }
 
+  const CloseButton = () => (
+    <a
+      onClick={() => {
+        props.onCloseClick(props.task.id);
+      }}
+      href="#!"
+      className="secondary-content"
+    >
+      <i className="material-icons ">close</i>
+    </a>
+  );
+
   return (
     <li
       className="collection-item avatar animated slideInUp flow-text "
@@ -20,15 +32,7 @@ const Task = (props) => {
         {props.task.text}
       </span>
       <CheckButton onCheckClick={props.onCheckClick} task={props.task} />
-      <a
-        onClick={() => {
-          props.onCloseClick(props.task.id);
-        }}
-        href="#!"
-        className="secondary-content"
-      >
-        <i className="material-icons ">close</i>
-      </a>
+      <CloseButton />
     </li>
   );
 };

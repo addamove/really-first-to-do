@@ -23,3 +23,4 @@ nodeJS v6 or up
 
 * [create-react-app](https://github.com/facebook/create-react-app)
 * [MaterializeCSS](http://materializecss.com/)
+* [REDUX](https://redux.js.org/)

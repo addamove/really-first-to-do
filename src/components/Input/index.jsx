@@ -1,13 +1,14 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addItem } from '../../actions/index';
 
 const Input = (props) => {
   let input;
+
   return (
     <div className="row">
-      <div className="col s12 m6 offset-m3">
+      <div className="col s12 m7 offset-m3">
         <div className="row">
           <div className="input-field   col s12  l12">
             <input
@@ -15,8 +16,9 @@ const Input = (props) => {
                 input = node;
               }}
               onKeyPress={(e) => {
-                if (e.key === 'Enter') {
-                  // dispatch(addItem(input.value));
+                if (e.key === 'Enter' && input.value.replace(/\s/g, '') !== '') {
+                  props.addItem(input.value);
+                  input.value = '';
                 }
               }}
               placeholder="Enter task"
@@ -45,5 +47,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addItem(value));
   },
 });
+
+Input.propTypes = {
+  addItem: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(Input);

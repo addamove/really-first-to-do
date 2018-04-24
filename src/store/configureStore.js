@@ -1,14 +1,11 @@
 import { createStore } from 'redux';
 import rootReducer from '../reducers/rootReducer';
 
-// if (process.env.NODE_ENV === 'development') {
-//   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
-
-//   if (typeof devToolsExtension === 'function') {
-//     enhancers.push(devToolsExtension());
-//   }
-// }
-
-const store = createStore(rootReducer);
+/* eslint-disable no-underscore-dangle */
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
+/* eslint-enable */
 
 export default store;

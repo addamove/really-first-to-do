@@ -53,6 +53,7 @@ function tasks(state = [], action) {
 
 const todoApp = combineReducers({
   filter: visibilityFilter,
+
   tasks,
 });
 

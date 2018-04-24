@@ -4,3 +4,5 @@ export const TOGGLE_TASK = 'TOGGLE_TASK';
 export const CLEAR_TASKS = 'CLEAR_TASKS';
 export const CLOSE_TASK = 'CLOSE_TASK';
 export const SORT_TASKS = 'SORT_TASKS';
+export const SET_SORT_ANIMATION = 'SET_SORT_ANIMATION';
+export const REMOVE_SORT_ANIMATION = 'REMOVE_SORT_ANIMATION';

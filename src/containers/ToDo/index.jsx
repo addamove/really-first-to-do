@@ -4,28 +4,7 @@ import { connect } from 'react-redux';
 import Tasks from '../../components/Tasks/';
 import Input from '../../components/Input';
 import { clearTasks, toggleTasks, closeTask, sortTasks } from './../../actions/';
-
-const getVisibleTodos = (tasks, filter) => {
-  let filteredTasks;
-  switch (filter) {
-    case 'SHOW_ACTIVE': {
-      filteredTasks = tasks.filter(task => !task.completed);
-      break;
-    }
-
-    case 'SHOW_COMPLETED': {
-      filteredTasks = tasks.filter(task => task.completed);
-      break;
-    }
-
-    default: {
-      filteredTasks = tasks;
-      break;
-    }
-  }
-
-  return filteredTasks;
-};
+import getVisibleTodos from './getVisibleTodos';
 
 const ToDo = props => (
   <div className="container">
