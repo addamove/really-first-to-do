@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ShowTasksButtons from '../ShowTasksButtons';
+import { setVisibilityFilter } from '../../actions';
 
 const Navigation = props => (
   <nav>
@@ -23,4 +25,10 @@ Navigation.propTypes = {
   filter: PropTypes.string.isRequired,
 };
 
-export default Navigation;
+const mapDispatchToProps = dispatch => ({
+  changeTasksFilter: (filter) => {
+    dispatch(setVisibilityFilter(filter));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(Navigation);

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import ShowTasksButton from './ShowTasksButton';
 
@@ -50,4 +51,8 @@ ShowTasksButtons.propTypes = {
   filter: PropTypes.string.isRequired,
 };
 
-export default ShowTasksButtons;
+const mapStateToProps = ({ filter }) => ({
+  filter,
+});
+
+export default connect(mapStateToProps)(ShowTasksButtons);

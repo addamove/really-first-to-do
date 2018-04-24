@@ -13,7 +13,7 @@ const CheckButton = props => (
     }}
   >
     <i
-      className={`material-icons circle ${props.task.completed ? 'teal lighten-5' : 'blue'}`}
+      className={`material-icons circle ${props.task.completed ? 'teal lighten-3' : 'blue'}`}
       style={{
         cursor: 'pointer',
         marginTop: '-16px',

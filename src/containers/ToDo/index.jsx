@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Tasks from '../../components/Tasks/';
 import Input from '../../components/Input';
+import { clearTasks, toggleTasks, closeTask, sortTasks } from './../../actions/';
 
 const getVisibleTodos = (tasks, filter) => {
   let filteredTasks;
@@ -26,68 +27,59 @@ const getVisibleTodos = (tasks, filter) => {
   return filteredTasks;
 };
 
-class ToDo extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      // index: 0,
-      animate: '',
-    };
-
-    // this.handleChangeValue = this.handleChangeValue.bind(this);
-    // this.addItem = this.addItem.bind(this);
-    // this.sort = this.sort.bind(this);
-  }
-
-  // sort() {
-  //   const newTasks = this.state.tasks
-  //     .map(task => task.text)
-  //     .sort()
-  //     .map((text, index) => ({
-  //       text,
-  //       key: this.state.tasks[index].key,
-  //       completed: this.state.tasks[index].completed,
-  //     }));
-  //   // set animation
-  //   this.setState(() => ({ tasks: newTasks, animate: 'animated wobble' }));
-
-  //   // remove animation
-  //   setTimeout(() => {
-  //     this.setState(() => ({ animate: '' }));
-  //   }, 500);
-  // }
-
-  render() {
-    return (
-      <div className="container">
-        <div className="row">
-          <Input />
-          <div className="col s12 m7 offset-m3">
-            <Tasks
-              tasksFilter={this.props.filter}
-              tasks={this.props.tasks}
-              onCheckClick={this.onCheckClick}
-              onCloseClick={this.onCloseClick}
-              animate={this.state.animate}
-              onSortButton={this.sort}
-              onClearButton={this.clear}
-            />
-          </div>
-        </div>
+const ToDo = props => (
+  <div className="container">
+    <div className="row">
+      <Input />
+      <div className="col s12 m7 offset-m3">
+        <Tasks
+          allTasks={props.allTasks}
+          filter={props.filter}
+          tasks={props.tasks}
+          onCheckClick={props.onCheckClick}
+          onCloseClick={props.onCloseClick}
+          onSortButton={props.onSortButton}
+          onClearButton={props.onClearButton}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  </div>
+);
 
-// ToDo.propTypes = {
-//   tasksFilter: PropTypes.func.isRequired,
-// };
+const mapStateToProps = ({ tasks, filter }) => ({
+  tasks: getVisibleTodos(tasks, filter),
+  allTasks: tasks,
+  filter,
+});
 
-const mapStateToProps = ({ tasks, filter }) =>
-  // console.log(tasks);
-  ({
-    tasks: getVisibleTodos(tasks, filter),
-    filter,
-  });
-export default connect(mapStateToProps)(ToDo);
+const mapDispatchToProps = dispatch => ({
+  onClearButton: () => {
+    dispatch(clearTasks());
+  },
+  onCheckClick: (id) => {
+    dispatch(toggleTasks(id));
+  },
+  onCloseClick: (id) => {
+    dispatch(closeTask(id));
+  },
+  onSortButton: () => {
+    dispatch(sortTasks());
+  },
+});
+
+ToDo.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.object),
+  allTasks: PropTypes.arrayOf(PropTypes.object),
+  onClearButton: PropTypes.func.isRequired,
+  onCheckClick: PropTypes.func.isRequired,
+  onSortButton: PropTypes.func.isRequired,
+  onCloseClick: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
+};
+
+ToDo.defaultProps = {
+  allTasks: [],
+  tasks: [],
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDo);

@@ -1,11 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Task from './Task';
-import { clearTasks, toggleTasks, closeTask, sortTasks } from './../../actions/';
 
-const ToDosHeaderText = 'TEST';
+// header text depends on filter
+
+const headerText = (filter) => {
+  switch (filter) {
+    case 'SHOW_ACTIVE':
+      return 'Active ToDos';
+    case 'SHOW_COMPLETED':
+      return 'Done ToDos';
+    default:
+      return 'ToDo';
+  }
+};
+// wobble animation when sorting tasks
 let animate;
+
 const Tasks = (props) => {
   // filtering tasks depending on props.tasksFilter
 
@@ -19,8 +30,8 @@ const Tasks = (props) => {
   ));
 
   return tasks.length !== 0 ||
-    (props.tasksFilter === 'SHOW_ACTIVE' && props.tasks.length !== 0) ||
-    (props.tasksFilter === 'SHOW_COMPLETED' && props.tasks.length !== 0) ? (
+    (props.filter === 'SHOW_ACTIVE' && props.allTasks.length !== 0) ||
+    (props.filter === 'SHOW_COMPLETED' && props.allTasks.length !== 0) ? (
       <div className="animated fadeIn">
         <ul className="collection ">
           <li className="collection-item">
@@ -52,7 +63,7 @@ const Tasks = (props) => {
         <ul className={`collection with-header  z-depth-1 + ${animate}`}>
           <li className="collection-header ">
             <h4>
-              <span className="hide-on-small-only">{ToDosHeaderText}</span>
+              <span className="hide-on-small-only">{headerText(props.filter)}</span>
               <span className="hide-on-med-and-up">ToDo</span>
             </h4>
           </li>
@@ -70,33 +81,18 @@ const Tasks = (props) => {
 
 Tasks.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.object),
+  allTasks: PropTypes.arrayOf(PropTypes.object),
   onClearButton: PropTypes.func.isRequired,
   onCheckClick: PropTypes.func.isRequired,
   onSortButton: PropTypes.func.isRequired,
   onCloseClick: PropTypes.func.isRequired,
-  animate: PropTypes.string,
-  tasksFilter: PropTypes.string,
+  filter: PropTypes.string,
 };
 
 Tasks.defaultProps = {
-  tasksFilter: 'SHOW_ALL',
-  animate: '',
+  filter: 'SHOW_ALL',
   tasks: [],
+  allTasks: [],
 };
 
-const mapDispatchToProps = dispatch => ({
-  onClearButton: () => {
-    dispatch(clearTasks());
-  },
-  onCheckClick: (id) => {
-    dispatch(toggleTasks(id));
-  },
-  onCloseClick: (id) => {
-    dispatch(closeTask(id));
-  },
-  onSortButton: () => {
-    dispatch(sortTasks());
-  },
-});
-
-export default connect(null, mapDispatchToProps)(Tasks);
+export default Tasks;
